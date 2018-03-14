@@ -24,19 +24,13 @@ module.exports = {
     }),
 
     //使用hash格式的模块id 避免因为模块id改变而产生chunkhash的改变，导致打包后的filename产生不必要的缓存失效
+    //注意：把manifest抽出来之后就不需要这个了
     //new webpack.HashedModuleIdsPlugin(),
 
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['common', 'vendor'],  //注意顺序
+      names: ['common', 'vendor', 'manifest'],  //注意顺序
       minChunks: 2,
     }),
 
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest",
-      minChunks: Infinity
-    }),
-
-    
-  
   ],
 };

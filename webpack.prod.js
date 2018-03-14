@@ -6,7 +6,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-    //devtool: 'eval-source-map',
+    //devtool: 'eval-source-map',   //生产环境不要使用 打包后文件体积会很大
     devServer: {
         //contentBase: "./dist",//本地服务器所加载的页面所在的目录
         historyApiFallback: true,//不跳转
