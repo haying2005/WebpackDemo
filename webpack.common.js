@@ -6,11 +6,12 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     index: './src/index.js',
+    index1: './src/index1.js',
     vendor: ['lodash'], //第三方库打到单独的文件里
   },
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js', //懒加载的模块会生成单独的chunk
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].js', //懒加载的模块会生成单独的chunk
     path: path.resolve(__dirname, 'dist')
   },
 
@@ -23,7 +24,7 @@ module.exports = {
     }),
 
     //使用hash格式的模块id 避免因为模块id改变而产生chunkhash的改变，导致打包后的filename产生不必要的缓存失效
-    new webpack.HashedModuleIdsPlugin(),
+    //new webpack.HashedModuleIdsPlugin(),
 
     new webpack.optimize.CommonsChunkPlugin({
       names: ['common', 'vendor'],  //注意顺序
@@ -34,6 +35,8 @@ module.exports = {
       name: "manifest",
       minChunks: Infinity
     }),
+
+    
   
   ],
 };
