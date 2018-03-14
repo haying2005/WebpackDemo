@@ -21,6 +21,10 @@ module.exports = merge(common, {
             verbose: true,
             dry: false
         }),
+
+        new webpack.DefinePlugin({
+            CURRENT_ENV: JSON.stringify('prod'),
+        })
     ],
 }
 
